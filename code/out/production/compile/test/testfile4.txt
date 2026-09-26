@@ -1,0 +1,108 @@
+/*
+ * B2: B级 char、字符串、switch、字符转义、字符串初始化
+ */
+
+// #include "libsysy.h"
+
+const char NORMAL = 'A';
+
+const char ESC_N = '\n';
+const char ESC_T = '\t';
+const char ESC_R = '\r';
+const char ESC_0 = '\0';
+const char ESC_SLASH = '\\';
+const char ESC_QUOTE = '\'';
+
+const char CONST_TEXT[6] = "hi";
+
+char echo(char c)
+{
+    return c;
+}
+
+char next_char(char c)
+{
+    return c + (char)1;
+}
+
+int first_code(char a[])
+{
+    return (int)a[0];
+}
+
+int main()
+{
+    printf("24373168\n");
+
+    char buffer[16];
+
+    char text[8] = "abc";
+
+    char padded[5] = "hi";
+
+    char trunc[2] = "xy";
+
+    get_string(buffer, 16);
+    char ch = get_char();
+
+    char out = echo(ch);
+    int original_code = (int)out;
+
+    char casted = (char)67;
+
+    /*
+     * char 模 256 回绕：
+     * 255 + 1 -> 0
+     */
+    char cmax = (char)255;
+    char cone = (char)1;
+    char wrap = cmax + cone;
+
+    int k = 2;
+    int sw = 0;
+
+    switch (k)
+    {
+    case 0:
+    case 1:
+        sw = 10;
+        break;
+    case 2:
+        sw = 20;
+    default:
+        sw = sw + 1;
+        break;
+    }
+
+    /* char switch */
+    switch (out)
+    {
+    case 'A':
+        out = 'X';
+        break;
+    case 'B':
+        out = next_char(out);
+        break;
+    default:
+        out = '?';
+        break;
+    }
+
+    /*
+     * 覆盖 put_string / put_char / put_int
+     */
+    put_string(buffer);
+    put_char(out);
+    put_char('\n');
+    put_int(original_code);
+    put_char('\n');
+
+    /*
+     * 覆盖 %c / %d / %s；
+     * padded[2] 应为 0；
+     * trunc[0], trunc[1] 应为 x, y。
+     */
+    printf("%c %d %s %d %c%c %d %d\n", out, sw, text, (int)wrap, trunc[0], trunc[1], (int)padded[2], first_code(text));
+
+    return 0;
+}

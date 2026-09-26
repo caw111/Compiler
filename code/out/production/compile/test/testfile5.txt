@@ -1,0 +1,41 @@
+/*
+ * A1: A级复杂条件 && / ||
+ */
+
+int main() {
+    printf("24373168\n");
+    
+    int x = get_int();
+    int y = get_int();
+
+    int score = 0;
+
+    /* LAndExp */
+    if (x > 0 && y > 0)
+        score = score + 1;
+
+    /* LOrExp */
+    if (x < 0 || y == 3)
+        score = score + 2;
+
+    /*
+     * 同时包含 && 和 ||，
+     * && 的优先级高于 ||
+     */
+    if (x < y && y <= 10 || x == 100)
+        score = score + 4;
+
+    /* ! 与 && */
+    if (!0 && x != y)
+        score = score + 8;
+
+    /* while 中复杂条件 */
+    while (x < 5 && y > 0) {
+        x = x + 1;
+        y = y - 1;
+    }
+
+    printf("%d %d %d\n", score, x, y);
+
+    return 0;
+}

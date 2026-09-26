@@ -1,0 +1,93 @@
+/*
+ * C2: C级表达式、控制流、语句覆盖
+ */
+
+int identity(int x) {
+    return x;
+}
+
+int main() {
+    printf("24373168\n");
+    int x = get_int();
+
+    /* Stmt -> [Exp] ';'：Exp 不存在 */
+    ;
+
+    /* Stmt -> [Exp] ';'：Exp 存在 */
+    x = x + 1;
+
+    /* + - * / %，括号，一元 + / - */
+    int arithmetic = (x + 4) * 2 - 6 / 3 + 7 % 4;
+    int pos = +x;
+    int neg = -x;
+
+    int score = 0;
+
+    /* RelExp: > >= < <= */
+    if (x > 0)
+        score = score + 1;
+
+    if (x >= 5)
+        score = score + 1;
+
+    if (x < 100)
+        score = score + 1;
+
+    if (x <= 8)
+        score = score + 1;
+
+    /* EqExp: == != */
+    if (x == 8)
+        score = score + 1;
+
+    if (x != 9)
+        score = score + 1;
+
+    /* UnaryOp: !，且 ! 只出现在条件中 */
+    if (!0)
+        score = score + 1;
+
+    /* if-else */
+    if (x < 0)
+        score = score + 100;
+    else
+        score = score + 10;
+
+    /*
+     * else 就近匹配：
+     * else 与内层 if 配对
+     */
+    int nearest = 0;
+    if (1)
+        if (0)
+            nearest = 1;
+        else
+            nearest = 2;
+
+    /* while / continue / break */
+    int i = 0;
+    int sum = 0;
+
+    while (i < 6) {
+        i = i + 1;
+
+        if (i == 2)
+            continue;
+
+        if (i == 5)
+            break;
+
+        sum = sum + i;
+    }
+
+    /* Block 作为 Stmt */
+    {
+        int block_value = identity(3);
+        score = score + block_value;
+    }
+
+    /* printf 有多个 Exp */
+    printf("%d %d %d %d %d %d\n",arithmetic, pos, neg, score, sum, nearest);
+
+    return 0;
+}

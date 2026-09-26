@@ -1,0 +1,50 @@
+/*
+ * C2: C级基础声明、函数、static、运行时输入输出
+ */
+
+// #include "libsysy.h"
+
+const int BASE = 10;
+const int C1 = 1, C2 = 2, C3 = 3;
+
+int global_zero;
+int global_a = 4, global_b, global_c = 6;
+int _id1 = 7;
+
+void empty_block() {
+}
+
+void return_void() {
+    return;
+}
+
+int add3(int a, int b, int c) {
+    return a + b + c;
+}
+
+int counter() {
+    static int s = 0;
+    s = s + 1;
+    return s;
+}
+
+int main() {
+    printf("24373168\n");
+    int x = get_int();
+
+    int local = x;
+    int v1 = 1, v2 = 2, v3 = 3;
+
+    static int static_zero;
+
+    empty_block();
+    return_void();
+
+    int sum = add3(local, C2, v3);
+    int first = counter();
+    int second = counter();
+
+    printf("%d %d %d %d %d\n",global_zero, global_b, static_zero, sum, first + second);
+
+    return 0;
+}

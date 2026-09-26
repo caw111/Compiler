@@ -1,0 +1,58 @@
+/*
+ * B1: B级数组全覆盖
+ */
+
+const int N = 4;
+
+const int CONST_ARR[4] = {1, 2};
+
+const int EMPTY_CONST[2] = {};
+
+int GLOBAL_ARR[3] = {5, 6, 7};
+
+int sum4(int a[]) {
+    int i = 0;
+    int s = 0;
+
+    while (i < 4) {
+        s = s + a[i];
+        i = i + 1;
+    }
+
+    return s;
+}
+
+int pick(int x) {
+    return x;
+}
+
+int mix3(int a[], int x, int y) {
+    return a[0] + x + y;
+}
+
+int main() {
+    printf("24373168\n");
+    int arr[4] = {1, 2, 3, 4};
+
+    int empty[3] = {};
+
+    int raw[3];
+
+    int input = get_int();
+
+    raw[0] = input;
+    raw[1] = raw[0] + 1;
+    raw[2] = CONST_ARR[1];
+
+    empty[1] = arr[2];
+
+    int s = sum4(arr);
+
+    int p = pick(arr[1]);
+
+    int m = mix3(GLOBAL_ARR, raw[1], empty[1]);
+
+    printf("%d %d %d %d %d\n",s, p, m, CONST_ARR[2], EMPTY_CONST[0]);
+
+    return 0;
+}
