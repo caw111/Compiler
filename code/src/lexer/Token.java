@@ -28,12 +28,12 @@ public final class Token {
     public String toString() {
         if(this.type != TokenType.a) {
             if(this.type != TokenType.NOTE) {
-                return this.type + " " + lexeme + "\n";
+                return this.type + " " + lexeme;
             } else {
                 return "";
             }
         } else {
-            return this.line + " a\n";
+            return this.line + " a";
         }
     }
 

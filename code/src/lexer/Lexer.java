@@ -4,6 +4,7 @@ public class Lexer {
     private final String source;
     private int pos = 0;
     private int line = 1;
+    private String errorContent = "";
 
     public Lexer(String source) {
         this.source = source;
@@ -11,6 +12,14 @@ public class Lexer {
 
     public String getSource() {
         return source;
+    }
+
+    private void error() {
+        errorContent += line + " a\n";
+    }
+
+    public String getErrorContent() {
+        return errorContent;
     }
 
     private boolean isAtEnd() {
@@ -157,13 +166,15 @@ public class Lexer {
                     advance();
                     return new Token(TokenType.OR, "||", line);
                 }
-                return new Token(TokenType.a, "|", line);
+                error();
+                return new Token(TokenType.OR, "||", line);
             case '&':
                 if(!isAtEnd() && peek() == '&') {
                     advance();
                     return new Token(TokenType.AND, "&&", line);
                 }
-                return new Token(TokenType.a, "&", line);
+                error();
+                return new Token(TokenType.AND, "&&", line);
             case '\'':
                 start = pos-1;
                 while(!isAtEnd()) {

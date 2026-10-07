@@ -60,4 +60,5 @@ public enum TokenType {
     n,          // 错误类型
 
     NOTE,       // 注释
+    EOF,        // 文件末尾
 }
