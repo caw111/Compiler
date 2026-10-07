@@ -136,7 +136,8 @@ mulExp
     ;
 
 addExp
-    : mulExp (('+' | '-') mulExp)*
+    :  mulExp | addExp ('+' | '−') mulExp
+    // : mulExp (('+' | '-') mulExp)*
     ;
 
 relExp

@@ -1,4 +1,3 @@
-// 进行词法分析
 import lexer.Lexer;
 import lexer.Token;
 import lexer.TokenType;
