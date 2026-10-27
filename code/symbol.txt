@@ -1,0 +1,8 @@
+1 year ConstInt
+1 month ConstInt
+1 day Int
+1 getDay IntFunc
+1 fun IntFunc
+1 main IntFunc
+2 day StaticInt
+5 length Int

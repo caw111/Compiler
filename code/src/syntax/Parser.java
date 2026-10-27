@@ -25,7 +25,7 @@ public class Parser {
         return root;
     }
 
-    public void error(TokenType tokenType, Token token) {
+    private void error(TokenType tokenType, Token token) {
         if(tokenType == TokenType.SEMICN) {
             errorContent += token.getLine() + " i\n";
         } else if(tokenType == TokenType.RPARENT) {

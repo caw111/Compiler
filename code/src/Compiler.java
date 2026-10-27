@@ -1,6 +1,8 @@
 import lexer.Lexer;
 import lexer.Token;
 import lexer.TokenType;
+import semantic.SemanticAnalyse;
+import semantic.symbolTable.symbol.SymbolTable;
 import syntax.AST.AstNode;
 import syntax.Parser;
 import utils.Tools;
@@ -26,7 +28,8 @@ public class Compiler {
         }
 
         try (BufferedWriter fwOut = new BufferedWriter(new FileWriter("parser.txt"));
-             BufferedWriter fwErr = new BufferedWriter(new FileWriter("error.txt"));){
+             BufferedWriter fwErr = new BufferedWriter(new FileWriter("error.txt"));
+             BufferedWriter fwOut2 = new BufferedWriter(new FileWriter("symbol.txt"))) {
             while ((token = lexer.nextToken()) != null) {
                 if(token.getType() != TokenType.NOTE) tokenList.add(token);
             }
@@ -34,10 +37,15 @@ public class Compiler {
 
             Parser parser = new Parser(tokenList);
             AstNode root = parser.start();
+            SemanticAnalyse semanticAnalyse = new SemanticAnalyse(root);
+            semanticAnalyse.start();
             String errorContent = parser.getErrorContent();
             error.append(errorContent);
+            error.append(semanticAnalyse.getErrorContent());
 
-            if(error.isEmpty()) root.printTree(fwOut);
+            SymbolTable symbolTable = semanticAnalyse.getSymbolTable();
+
+            if(error.isEmpty()) symbolTable.printSymbolTable(fwOut2);
             List<String> errors = new ArrayList<>(error.toString().lines().toList());
             errors.sort(Comparator.comparingInt(line -> Integer.parseInt(line.substring(0, line.indexOf(' ')))));
             for (String line : errors) {

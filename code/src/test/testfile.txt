@@ -1,8 +1,26 @@
+const int year = 2026, month = 9;
+int day;
+
+int getDay(){
+    static int day;
+    day = get_int();
+    return day;
+}
+
+int fun(){
+    return 12345;
+}
+
 int main(){
-    int c;
-    c = get_int()
-    if(1 & 2){
-        printf("output is %d\n", c);
+    day = getDay();
+    printf("Tody is %d-%d-%d\n", year, month, day);
+
+    {
+        int length = fun();
+        if(length > 4){
+            printf("%d\n", length);
+        }
     }
+
     return 0;
 }

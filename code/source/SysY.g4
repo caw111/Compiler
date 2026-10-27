@@ -1,5 +1,7 @@
 grammar SysY;
 
+// blockItem,BType,Decl 不存在
+
 compUnit
     : decl* funcDef* mainFuncDef EOF
     ;
