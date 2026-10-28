@@ -534,7 +534,7 @@ public class SemanticAnalyse {
         return SymbolTypeMap.getSymbolTypeMap().get(typeName);
     }
 
-    private List<SymbolType> extractFuncFParams(AstNode node) {
+        private List<SymbolType> extractFuncFParams(AstNode node) {
         List<SymbolType> paramTypes = new ArrayList<>();
         for(AstNode child : node.getChildren()) {
             if(!child.isTerminal() && child.getName().equals("<FuncFParam>")) {

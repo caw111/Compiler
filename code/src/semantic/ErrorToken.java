@@ -9,6 +9,4 @@ public class ErrorToken {
         this.errorType = errorType;
         this.line = line ;
     }
-
-
 }

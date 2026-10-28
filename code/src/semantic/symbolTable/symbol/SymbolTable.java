@@ -26,15 +26,6 @@ public class SymbolTable {
         return stackSymbolTable.getSymbolStack().putIfAbsent(symbol.getSymbolName(), symbol) == null;
     }
 
-    // 对这个符号进行检查，看看是否存在错误
-    public boolean isHaveSymbol(Symbol symbol) {
-        StackSymbolTable stackSymbolTable = symbolTables.get(symbol.getScopeLevel());
-        if(stackSymbolTable.isHaveSymbol(symbol)) {
-            return true;
-        }
-        return false;
-    }
-
     public Symbol findInScope(String symbolName, int scopeLevel) {
         StackSymbolTable stackSymbolTable = symbolTables.get(scopeLevel);
         if(stackSymbolTable == null) {
